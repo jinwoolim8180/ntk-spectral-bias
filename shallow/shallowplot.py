@@ -1,6 +1,7 @@
 import torch
 from shallow import Shallow, KernelCreator, Activations
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 import numpy as np
 import scipy.linalg
@@ -34,7 +35,7 @@ class FigureGen:
 
         eigs, dirs = scipy.linalg.eigh(ker)
         eigs = np.flip(eigs)
-        eigs /= max(eigs)
+        # eigs /= max(eigs)
 
         return eigs 
 
@@ -54,7 +55,7 @@ class FigureGen:
         fig, axs = plt.subplots()
         axs.set_yscale('log')
    
-        for i in range(num_runs):
+        for i in tqdm(range(num_runs)):
             xs, ys = next(iter(data_train_loader))
             xs = xs.numpy().T
             input_d = xs.shape[0]

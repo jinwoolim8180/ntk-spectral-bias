@@ -3,11 +3,11 @@ from collections import OrderedDict
 
 
 class C1(nn.Module):
-    def __init__(self):
+    def __init__(self, c=1):
         super(C1, self).__init__()
 
         self.c1 = nn.Sequential(OrderedDict([
-            ('c1', nn.Conv2d(1, 6, kernel_size=(5, 5))),
+            ('c1', nn.Conv2d(c, 6, kernel_size=(5, 5))),
             ('relu1', nn.ReLU()),
             ('s1', nn.MaxPool2d(kernel_size=(2, 2), stride=2))
         ]))
@@ -87,10 +87,10 @@ class LeNet5(nn.Module):
     Input - 1x32x32
     Output - 10
     """
-    def __init__(self):
+    def __init__(self, c=1):
         super(LeNet5, self).__init__()
 
-        self.c1 = C1()
+        self.c1 = C1(c)
         self.c2_1 = C2() 
         self.c2_2 = C2() 
         self.c3 = C3() 
